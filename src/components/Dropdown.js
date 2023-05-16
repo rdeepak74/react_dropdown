@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {styled} from "styled-components";
 import Dropdownlist from './Dropdownlist';
 
+// Styled components css
 const Container = styled.div`
     width: 50%;
     height: 305px;
@@ -45,29 +46,34 @@ const Select = styled.div`
 
 
 const Dropdown = () => {
-    let [select , setSelect]=useState(false);
-    const [value,setValue]=useState("");
-    const handselect =()=>{
+
+    let [select , setSelect]=useState(false);//Hooks used for boolean value to hide and show for select option.
+    const [value,setValue]=useState("");//Hooks used for storing the  value of  option.
+
+    //Click handling boolean
+    const handselect =()=>{ 
         setSelect(value=>!value);
         setValue(" ");
     }
     
     
-
-    const handlevalue =(e)=>{
+    //Click handling for storing a value
+    const handlevalue =(e)=>{ 
         setValue(e.target.textContent);
     }
+
   return (
     <Container>
         <Heading>
            <span>Should you use a dropdown? &nbsp;</span> 
-           <span>{value}</span> 
+           <span>{value}</span>  {/* Displaying a value */}
         </Heading>
-            <Datadiv onClick={handselect}>
+            <Datadiv onClick={handselect}> {/* click handling for boolean value true and false */}
                 <Data >Select</Data>
                 <img style={{width:"10%"}} src='https://cdn-icons-png.flaticon.com/128/2722/2722987.png'/>
             </Datadiv>
-            <Select style={{display:`${select?'flex':'none'}`}}>
+            
+            <Select style={{display:`${select?'flex':'none'}`}}> {/* Here hide and show boolean using */}
                 <span  onClick={handlevalue} style={{cursor:"pointer"}}>Yes</span>
                 <span  onClick={handlevalue} style={{cursor:"pointer"}}>Probably not</span>
             </Select>
